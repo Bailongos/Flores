@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/garden-extras.css">
+    <link rel="stylesheet" href="css/living-garden.css">
     <link rel="icon" href="img/flowers.png" type="image/x-icon">
     <title>Tu jardín de flores 🌼</title>
 </head>
@@ -18,10 +19,12 @@
       <nav class="garden-actions" aria-label="Opciones del jardín">
         <button id="wish-button" type="button">💌 Un mensaje para ti</button>
         <button id="petal-button" type="button">🌸 Lluvia de flores</button>
+        <button id="animals-toggle" class="animals-toggle" type="button" aria-pressed="false">⏸ Pausar animalitos</button>
         <a href="index.html">↶ Volver</a>
       </nav>
     </div>
     <div class="wish-toast" id="wish-toast" role="status" aria-live="polite" hidden></div>
+    <div class="living-garden" aria-hidden="true"></div>
     <div class="night"></div>
     <div class="flowers">
       <div class="flower flower--1">
@@ -321,5 +324,6 @@
     </div>
     <script src="main.js"></script>
     <script src="garden.js" defer></script>
+    <script src="living-garden.js" defer></script>
   </body>
 </html>
