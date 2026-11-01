@@ -19,20 +19,20 @@
   ['fungus',81,3,105,'#ff83bc','#ffb3e3'],['crystal',91,0,110,'#b4a3ff','#b3a4ff'],
   ['fungus',27,0,65,'#82cefa','#8fe8fc'],['crystal',72,2,75,'#f9b8ff','#dfabff']
  ];
- decorations.forEach(([type,x,bottom,size,color,glow],i)=>{
+ decorations.filter((_,i)=>window.matchMedia('(max-width: 700px)').matches ? i%2===0 : true).forEach(([type,x,bottom,size,color,glow],i)=>{
   const node=document.createElement('div');node.className='fantasy-object '+type;
   node.style.cssText='--x:'+x+'%;--bottom:'+bottom+'%;--size:'+size+'px;--cap:'+color+';--glow:'+glow+';--delay:'+(i*.3)+'s;--duration:'+(4+i%3)+'s';
   node.innerHTML=type==='fungus'?fungus(color):crystal(color);world.appendChild(node);
  });
- [[8,40,72,'#93ffdd',12,0],[78,35,80,'#ffd1f2',16,-6],[47,46,59,'#d0b2ff',13,-10]].forEach(([x,y,size,color,duration,delay])=>{
+ [[8,40,72,'#93ffdd',12,0],[78,35,80,'#ffd1f2',16,-6],[47,46,59,'#d0b2ff',13,-10]].filter((_,i)=>!window.matchMedia('(max-width: 700px)').matches || i===1).forEach(([x,y,size,color,duration,delay])=>{
   const node=document.createElement('div');node.className='fairy';
   node.style.cssText='--x:'+x+'%;--y:'+y+'%;--size:'+size+'px;--glow:'+color+';--duration:'+duration+'s;--delay:'+delay+'s';node.innerHTML=fairy(color);world.appendChild(node);
  });
- for(let i=0;i<24;i++){
+ for(let i=0;i<(window.matchMedia('(max-width: 700px)').matches?6:12);i++){
   const orb=document.createElement('div');orb.className='floating-orb';
   orb.style.cssText='--x:'+((i*37+11)%97)+'%;--y:'+(17+(i*29)%73)+'%;--size:'+(3+i%5*2)+'px;--glow:'+(i%2?'#b9a2ff':'#8cffe2')+';--duration:'+(4+i%6)+'s;--delay:'+(-i*.43)+'s';world.appendChild(orb);
  }
- if(!reduced)for(let i=0;i<5;i++){
+ if(!reduced && !window.matchMedia('(max-width: 700px)').matches)for(let i=0;i<3;i++){
   const star=document.createElement('div');star.className='shooting-star';
   star.style.cssText='--x:'+(17+i*19)+'%;--y:'+(10+i%3*13)+'%;--length:'+(65+i*13)+'px;--duration:'+(7+i*2)+'s;--delay:'+(i*2.6)+'s';world.appendChild(star);
  }
@@ -46,9 +46,9 @@
    world.appendChild(node);node.addEventListener('animationend',()=>node.remove(),{once:true});
   }
  }
- document.getElementById('spell-button')?.addEventListener('click',()=>burst(innerWidth/2,innerHeight*.5,52));
+ document.getElementById('spell-button')?.addEventListener('click',()=>burst(innerWidth/2,innerHeight*.5,24));
  document.addEventListener('pointerdown',e=>{
   if(e.target.closest('button,a'))return;
-  burst(e.clientX,e.clientY,17);
+  burst(e.clientX,e.clientY,8);
  });
 })();
