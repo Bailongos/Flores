@@ -40,7 +40,7 @@
   ];
   flowers.forEach(([left,bottom,size,petal],i)=>{
     const el=document.createElement('div');el.className='mini-flower';
-    el.style.cssText='--left:'+left+'%;--bottom:'+bottom+'%;--size:'+size+'px;--petal:'+petal+';--flower-angle:'+(i%2===0?'-16deg':'16deg')+';--speed:'+(3.6+i%4*.65)+'s;--delay:'+(-i*.34)+'s;--grow:'+(i*.21)+'s';
+    el.style.cssText='--left:'+left+'%;--bottom:'+bottom+'%;--size:'+size+'px;--petal:'+petal+';--flower-angle:'+(i%2===0?'-16deg':'16deg')+';--petal-gradient:url(#petalDepth'+i+');--core-gradient:url(#coreDepth'+i+');--stem-gradient:url(#stemDepth'+i+');--leaf-gradient:url(#leafDepth'+i+');--speed:'+(3.6+i%4*.65)+'s;--delay:'+(-i*.34)+'s;--grow:'+(i*.21)+'s';
     el.innerHTML=flowerMarkup().replace(/id="(petalDepth|coreDepth|stemDepth|leafDepth)"/g, (_,id)=>'id="'+id+i+'"').replace(/url\(#(petalDepth|coreDepth|stemDepth|leafDepth)\)/g,(_,id)=>'url(#'+id+i+')');scene.appendChild(el);
   });
   const creatures=[
