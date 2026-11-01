@@ -1,48 +1,77 @@
-/* Decorative life is generated once; no framework or network dependency. */
+/* Animaciones artesanales: flores que brotan y criaturas dibujadas con SVG. */
 (() => {
-  const scene = document.querySelector('.living-garden');
-  if (!scene) return;
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const flowers = [
-    [3,5,70,'#ffb8d2',0],[13,1,57,'#f9d67a',1],[23,3,45,'#cbafff',2],
-    [32,0,53,'#ffcf8e',3],[43,2,42,'#ff9cbb',4],[54,1,45,'#fff0a4',5],
-    [66,0,58,'#d2acff',6],[77,2,46,'#f7bbd7',7],[87,1,65,'#ffcc86',8],[96,4,54,'#b6d5ff',9]
+  const scene=document.querySelector('.living-garden');
+  if(!scene)return;
+  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const svg=(markup,viewBox='0 0 100 100')=>'<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+viewBox+'" aria-hidden="true" focusable="false">'+markup+'</svg>';
+  const flowerMarkup=()=>svg(
+    '<path class="flower-stem" d="M50 182 Q40 116 50 48"/>'+
+    '<path class="flower-leaf" d="M47 140 Q6 108 11 97 Q43 95 48 129Z"/>'+
+    '<path class="flower-leaf" d="M49 119 Q91 91 88 80 Q55 85 48 109Z"/>'+
+    '<path class="flower-leaf" d="M48 166 Q18 155 22 141 Q42 141 50 158Z"/>'+
+    '<g class="flower-head">'+
+    Array.from({length:9},(_,i)=>'<ellipse class="flower-petal" cx="50" cy="26" rx="12" ry="24" transform="rotate('+(i*40)+' 50 49)"/>').join('')+
+    '<circle class="flower-core flower-glimmer" cx="50" cy="49" r="14"/>'+
+    '<circle class="flower-specks" cx="45" cy="45" r="1.5"/><circle class="flower-specks" cx="54" cy="51" r="1.3"/><circle class="flower-specks" cx="47" cy="56" r="1.4"/></g>','0 0 100 185');
+  const butterfly=(a,b)=>svg(
+    '<g class="wing-l"><path d="M49 49 C13 -5 -7 13 11 44 Q20 58 49 54Z" fill="'+a+'"/><path d="M49 54 C10 47 12 92 40 77 Q48 70 49 54Z" fill="'+b+'"/><path d="M43 48 Q20 20 13 27" class="wing-veins"/><circle cx="19" cy="38" r="4" fill="#fff4c6"/></g>'+
+    '<g class="wing-r"><path d="M51 49 C87 -5 107 13 89 44 Q80 58 51 54Z" fill="'+a+'"/><path d="M51 54 C90 47 88 92 60 77 Q52 70 51 54Z" fill="'+b+'"/><path d="M57 48 Q80 20 87 27" class="wing-veins"/><circle cx="81" cy="38" r="4" fill="#fff4c6"/></g>'+
+    '<ellipse cx="50" cy="54" rx="4.4" ry="24" fill="#192c42"/><circle cx="50" cy="31" r="6" fill="#192c42"/>'+
+    '<path d="M48 26 Q37 12 33 18 M52 26 Q63 12 67 18" stroke="#263a48" stroke-width="2" fill="none" stroke-linecap="round"/>');
+  const bee=()=>svg(
+    '<g class="wing-l"><ellipse cx="31" cy="27" rx="19" ry="26" transform="rotate(-30 31 27)" fill="#ccfbff" fill-opacity=".83" stroke="#ebffff" stroke-width="2"/></g>'+
+    '<g class="wing-r"><ellipse cx="68" cy="27" rx="19" ry="26" transform="rotate(30 68 27)" fill="#ccfbff" fill-opacity=".83" stroke="#ebffff" stroke-width="2"/></g>'+
+    '<ellipse cx="50" cy="55" rx="31" ry="24" fill="#ffd35c" stroke="#b67d29" stroke-width="2"/>'+
+    '<path d="M34 34 Q27 55 33 74 M51 31 Q44 54 50 79 M68 38 Q61 54 69 72" stroke="#342f3b" stroke-width="8" fill="none"/>'+
+    '<circle cx="70" cy="48" r="3" fill="#18242e"/><circle cx="72" cy="58" r="4" fill="#ff909c" fill-opacity=".75"/>'+
+    '<path d="M18 51 L8 57 L19 63" fill="#c3863b"/>');
+  const ladybug=()=>svg(
+    '<ellipse cx="50" cy="55" rx="35" ry="28" fill="#211d2e"/>'+
+    '<path d="M50 32 C-2 25 10 90 49 82Z" fill="#fb6c70"/><path d="M50 32 C102 25 90 90 51 82Z" fill="#df395f"/>'+
+    '<path d="M50 32 V82" stroke="#24202b" stroke-width="3"/>'+
+    '<circle cx="30" cy="52" r="6" fill="#341c35"/><circle cx="38" cy="70" r="5" fill="#341c35"/><circle cx="68" cy="51" r="6" fill="#341c35"/><circle cx="60" cy="70" r="5" fill="#341c35"/>'+
+    '<circle cx="50" cy="26" r="15" fill="#222331"/><path d="M42 17 L36 9 M58 17 L64 9" stroke="#222331" stroke-width="3" fill="none"/>');
+  const flowers=[
+    [2,2,81,'#ff9ec8'],[13,0,70,'#ffdb7c'],[24,3,60,'#bfa5ff'],
+    [36,0,59,'#f8a1ab'],[46,2,46,'#ffe6a6'],[57,1,51,'#e2b1ff'],
+    [68,0,63,'#ffbc8d'],[79,2,63,'#f69fc5'],[90,0,79,'#b2d9fa'],
+    [7,0,38,'#ffe2a2'],[95,2,40,'#e8a9ff']
   ];
-  for (const [left,bottom,size,color,i] of flowers) {
-    const flower = document.createElement('div');
-    flower.className = 'mini-flower';
-    flower.style.cssText = '--left:'+left+'%;--bottom:'+bottom+'%;--size:'+size+'px;--petal:'+color+';--speed:'+(3.5+i%4)+'s;--delay:'+(-i*.6)+'s';
-    flower.innerHTML = '<span class="stem"></span><span class="bloom">'+Array.from({length:8},(_,n)=>'<span class="petal" style="--i:'+n+'"></span>').join('')+'<span class="core"></span></span>';
-    scene.appendChild(flower);
-  }
-  const animals = [
-    ['🦋','butterfly',9,37,34,12,0],['🦋','butterfly',71,30,31,14,-4],
-    ['🦋','butterfly',38,57,26,16,-8],['🐝','bee',19,72,27,11,-2],
-    ['🐝','bee',81,62,25,12,-6],['🐞','ladybug',60,79,23,17,-10]
+  flowers.forEach(([left,bottom,size,petal],i)=>{
+    const el=document.createElement('div');el.className='mini-flower';
+    el.style.cssText='--left:'+left+'%;--bottom:'+bottom+'%;--size:'+size+'px;--petal:'+petal+';--speed:'+(3.6+i%4*.65)+'s;--delay:'+(-i*.34)+'s;--grow:'+(i*.21)+'s';
+    el.innerHTML=flowerMarkup();scene.appendChild(el);
+  });
+  const creatures=[
+    ['butterfly',8,31,72,12,0,butterfly('#a4caff','#7a7fe2')],
+    ['butterfly',72,28,68,15,-3,butterfly('#ffb2d8','#f375b9')],
+    ['butterfly',38,53,56,17,-8,butterfly('#ffd9a2','#f3ab6a')],
+    ['bee',18,65,53,11,-2,bee()],
+    ['bee',77,65,50,13,-7,bee()],
+    ['ladybug',58,77,36,19,-9,ladybug()]
   ];
-  for (const [emoji,type,x,y,size,duration,delay] of animals) {
-    const creature = document.createElement('div');
-    creature.className = 'critter '+type;
-    creature.setAttribute('aria-hidden','true');
-    creature.style.cssText = '--x:'+x+'%;--y:'+y+'%;--critter-size:'+size+'px;--duration:'+duration+'s;--delay:'+delay+'s';
-    const icon = document.createElement('span');icon.textContent=emoji;creature.appendChild(icon);scene.appendChild(creature);
+  creatures.forEach(([type,x,y,size,duration,delay,art])=>{
+    const el=document.createElement('div');el.className='critter '+type;
+    el.style.cssText='--x:'+x+'%;--y:'+y+'%;--critter-size:'+size+'px;--duration:'+duration+'s;--delay:'+delay+'s';
+    el.innerHTML=art;scene.appendChild(el);
+  });
+  for(let i=0;i<22;i++){
+    const el=document.createElement('span');el.className='firefly';
+    el.style.cssText='--x:'+((i*37+13)%96)+'%;--y:'+(20+(i*23)%70)+'%;--duration:'+(4+i%5)+'s;--delay:'+(-i*.67)+'s';
+    scene.appendChild(el);
   }
-  for (let i=0;i<25;i++) {
-    const light = document.createElement('span');
-    light.className='firefly';
-    light.style.cssText='--x:'+((i*37+13)%96)+'%;--y:'+(21+(i*23)%69)+'%;--duration:'+(4+i%5)+'s;--delay:'+(-i*.67)+'s';
-    scene.appendChild(light);
+  for(let i=0;i<14;i++){
+    const el=document.createElement('span');el.className='magic-spark';
+    el.style.cssText='--x:'+((i*29+8)%95)+'%;--bottom:'+(i%4*9)+'%;--duration:'+(5+i%5)+'s;--delay:'+(-i*.63)+'s';scene.appendChild(el);
   }
-  const toggle = document.getElementById('animals-toggle');
-  if (toggle) {
-    toggle.addEventListener('click', () => {
-      const paused = document.body.classList.toggle('animals-paused');
+  const toggle=document.getElementById('animals-toggle');
+  if(toggle){
+    const refresh=()=>{
+      const paused=document.body.classList.contains('animals-paused');
       toggle.textContent=paused?'▶ Animar animalitos':'⏸ Pausar animalitos';
       toggle.setAttribute('aria-pressed',String(paused));
-    });
-  }
-  if (reduced) {
-    document.body.classList.add('animals-paused');
-    if(toggle){toggle.textContent='▶ Animar animalitos';toggle.setAttribute('aria-pressed','true')}
+    };
+    toggle.addEventListener('click',()=>{document.body.classList.toggle('animals-paused');refresh();});
+    if(reduce){document.body.classList.add('animals-paused');refresh();}
   }
 })();
