@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/garden-extras.css">
     <link rel="icon" href="img/flowers.png" type="image/x-icon">
-    <title>FLORES</title>
+    <title>Tu jardín de flores 🌼</title>
 </head>
 
 <body class="container">
+    <div class="garden-ui">
+      <header class="garden-heading"><div class="garden-kicker">✦ PARA TI ✦</div><h1>Que siempre florezcan<br>cosas bonitas en tu vida.</h1><p>Un jardín pequeñito, con un cariño enorme ♡</p></header>
+      <nav class="garden-actions" aria-label="Opciones del jardín">
+        <button id="wish-button" type="button">💌 Un mensaje para ti</button>
+        <button id="petal-button" type="button">🌸 Lluvia de flores</button>
+        <a href="index.html">↶ Volver</a>
+      </nav>
+    </div>
+    <div class="wish-toast" id="wish-toast" role="status" aria-live="polite" hidden></div>
     <div class="night"></div>
     <div class="flowers">
       <div class="flower flower--1">
@@ -308,5 +320,6 @@
       </div>
     </div>
     <script src="main.js"></script>
+    <script src="garden.js" defer></script>
   </body>
 </html>
