@@ -38,7 +38,7 @@
     [68,-1,116,'#ffbc8d'],[79,1,129,'#f69fc5'],[90,0,149,'#b2d9fa'],
     [7,0,96,'#ffe2a2'],[96,2,96,'#e8a9ff']
   ];
-  flowers.forEach(([left,bottom,size,petal],i)=>{
+  flowers.filter((_,i)=>window.matchMedia('(max-width: 700px)').matches ? i%2===0 : true).forEach(([left,bottom,size,petal],i)=>{
     const el=document.createElement('div');el.className='mini-flower';
     el.style.cssText='--left:'+left+'%;--bottom:'+bottom+'%;--size:'+size+'px;--petal:'+petal+';--flower-angle:'+(i%2===0?'-16deg':'16deg')+';--petal-gradient:url(#petalDepth'+i+');--core-gradient:url(#coreDepth'+i+');--stem-gradient:url(#stemDepth'+i+');--leaf-gradient:url(#leafDepth'+i+');--speed:'+(3.6+i%4*.65)+'s;--delay:'+(-i*.34)+'s;--grow:'+(i*.21)+'s';
     el.innerHTML=flowerMarkup().replace(/id="(petalDepth|coreDepth|stemDepth|leafDepth)"/g, (_,id)=>'id="'+id+i+'"').replace(/url\(#(petalDepth|coreDepth|stemDepth|leafDepth)\)/g,(_,id)=>'url(#'+id+i+')');scene.appendChild(el);
@@ -51,17 +51,17 @@
     ['bee',77,62,79,13,-7,bee()],
     ['ladybug',58,76,56,19,-9,ladybug()]
   ];
-  creatures.forEach(([type,x,y,size,duration,delay,art])=>{
+  creatures.filter((_,i)=>window.matchMedia('(max-width: 700px)').matches ? i<3 : true).forEach(([type,x,y,size,duration,delay,art])=>{
     const el=document.createElement('div');el.className='critter '+type;
     el.style.cssText='--x:'+x+'%;--y:'+y+'%;--critter-size:'+size+'px;--duration:'+duration+'s;--delay:'+delay+'s';
     el.innerHTML=art;scene.appendChild(el);
   });
-  for(let i=0;i<22;i++){
+  for(let i=0;i<(window.matchMedia('(max-width: 700px)').matches?7:12);i++){
     const el=document.createElement('span');el.className='firefly';
     el.style.cssText='--x:'+((i*37+13)%96)+'%;--y:'+(20+(i*23)%70)+'%;--duration:'+(4+i%5)+'s;--delay:'+(-i*.67)+'s';
     scene.appendChild(el);
   }
-  for(let i=0;i<14;i++){
+  for(let i=0;i<(window.matchMedia('(max-width: 700px)').matches?4:8);i++){
     const el=document.createElement('span');el.className='magic-spark';
     el.style.cssText='--x:'+((i*29+8)%95)+'%;--bottom:'+(i%4*9)+'%;--duration:'+(5+i%5)+'s;--delay:'+(-i*.63)+'s';scene.appendChild(el);
   }
