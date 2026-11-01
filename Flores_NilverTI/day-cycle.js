@@ -19,14 +19,13 @@
  const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
  const ease=t=>t*t*(3-2*t);
  const timeEl=document.getElementById('clock-time'),phaseEl=document.getElementById('clock-phase'),dayEl=document.getElementById('clock-day'),symbol=document.getElementById('clock-symbol'),toggle=document.getElementById('clock-toggle');
- let paused=false,elapsed=0,last=performance.now(),previousSecond=-1;
+ let paused=false,elapsed=0,last=performance.now(),lastPaint=-Infinity;
  function tick(now){
   if(!paused)elapsed+=Math.min(now-last,1000);
   last=now;
   const total=START_HOUR+elapsed/DAY_LENGTH*24,day=Math.floor(total/24)+1,hour=total%24;
-  const second=Math.floor(hour*3600);
-  if(second!==previousSecond){
-   previousSecond=second;
+  if(now-lastPaint>=250 || lastPaint===-Infinity){
+   lastPaint=now;
    const hh=String(Math.floor(hour)).padStart(2,'0'),mm=String(Math.floor(hour*60)%60).padStart(2,'0');
    timeEl.textContent=hh+':'+mm;dayEl.textContent='Día '+day+' · Tiempo mágico';
    const phase=hour<5||hour>=20?'night':hour<8?'dawn':hour<17?'day':'dusk';
