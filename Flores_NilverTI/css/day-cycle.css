@@ -12,10 +12,10 @@
 .living-garden .mini-flower{perspective:550px;transform-style:preserve-3d;filter:drop-shadow(0 9px 11px #0009) drop-shadow(0 0 16px var(--petal))!important}
 .living-garden .floral-svg{transform:rotateY(var(--flower-angle,0deg)) rotateX(7deg);transform-origin:50% 65%;transform-style:preserve-3d;filter:drop-shadow(6px 8px 6px #01071791)!important}
 .living-garden .flower-head{filter:drop-shadow(0 8px 5px #160d2873)}
-.living-garden .flower-petal{fill:url(#petalDepth)!important;stroke:#fff9!important;stroke-width:.9;filter:drop-shadow(2px 4px 3px #2c14386e)!important}
-.living-garden .flower-core{fill:url(#coreDepth)!important;filter:drop-shadow(2px 3px 3px #33210c8a) drop-shadow(0 0 6px #fff0a1)!important}
-.living-garden .flower-stem{stroke:url(#stemDepth)!important;stroke-width:6;filter:drop-shadow(3px 2px 2px #061f1988)}
-.living-garden .flower-leaf{fill:url(#leafDepth)!important;filter:drop-shadow(3px 3px 3px #051e1980)}
+.living-garden .flower-petal{fill:var(--petal-gradient)!important;stroke:#fff9!important;stroke-width:.9;filter:drop-shadow(2px 4px 3px #2c14386e)!important}
+.living-garden .flower-core{fill:var(--core-gradient)!important;filter:drop-shadow(2px 3px 3px #33210c8a) drop-shadow(0 0 6px #fff0a1)!important}
+.living-garden .flower-stem{stroke:var(--stem-gradient)!important;stroke-width:6;filter:drop-shadow(3px 2px 2px #061f1988)}
+.living-garden .flower-leaf{fill:var(--leaf-gradient)!important;filter:drop-shadow(3px 3px 3px #051e1980)}
 .living-garden .flower-petal:nth-of-type(even){filter:brightness(.9) drop-shadow(3px 4px 2px #20132a88)!important}
 body[data-phase="day"] .enchanted-world .star-field,body[data-phase="day"] .enchanted-world .shooting-star{opacity:0!important}
 body[data-phase="day"] .enchanted-world .aurora{opacity:.07!important}
