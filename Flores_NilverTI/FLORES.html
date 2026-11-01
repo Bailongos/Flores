@@ -10,11 +10,18 @@
     <link rel="stylesheet" href="css/garden-extras.css">
     <link rel="stylesheet" href="css/living-garden.css">
     <link rel="stylesheet" href="css/enchanted.css">
+    <link rel="stylesheet" href="css/day-cycle.css">
     <link rel="icon" href="img/flowers.png" type="image/x-icon">
     <title>Tu jardín de flores 🌼</title>
 </head>
 
 <body class="container">
+    <div class="time-sky" aria-hidden="true"><div class="celestial sun"></div><div class="celestial moon"></div><div class="time-horizon"></div></div>
+    <div class="garden-clock" id="garden-clock" role="group" aria-label="Reloj del jardín, un día dura dos minutos">
+      <span class="clock-symbol" id="clock-symbol" aria-hidden="true">🌅</span>
+      <div class="clock-meta"><span class="clock-phase" id="clock-phase">Amanecer</span><span class="clock-time" id="clock-time">05:30</span><span class="clock-day" id="clock-day">Día 1 · Tiempo mágico</span></div>
+      <button id="clock-toggle" class="clock-pause" type="button" aria-label="Pausar ciclo de día y noche" aria-pressed="false">⏸</button>
+    </div>
     <div class="garden-ui">
       <header class="garden-heading"><div class="garden-kicker">✧ UN JARDÍN DE ENSUEÑO ✧</div><h1>Donde florece<br>la magia.</h1><p>Un universo de flores, hadas y estrellas creado especialmente para ti ✧</p></header>
       <nav class="garden-actions" aria-label="Opciones del jardín">
@@ -329,5 +336,6 @@
     <script src="garden.js" defer></script>
     <script src="living-garden.js" defer></script>
     <script src="enchanted.js" defer></script>
+    <script src="day-cycle.js" defer></script>
   </body>
 </html>
