@@ -1,19 +1,36 @@
-/* Living garden additions — layered above the original CSS bouquet. */
+/* Jardin encantado: SVG vectorial y animaciones hechas a mano, sin emojis ni dependencias. */
 .living-garden{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:9;isolation:isolate}
-.living-garden .mini-flower{position:absolute;bottom:var(--bottom,5%);left:var(--left,10%);width:var(--size,65px);height:calc(var(--size,65px)*1.8);transform-origin:bottom center;animation:sway var(--speed,4.5s) ease-in-out infinite alternate;animation-delay:var(--delay,0s);filter:drop-shadow(0 0 14px #ffff8730)}
-.living-garden .stem{position:absolute;left:49%;bottom:0;width:5%;height:71%;border-radius:99px;background:linear-gradient(90deg,#166f54,#57b883 60%,#1f6c54)}
-.living-garden .stem:after,.living-garden .stem:before{content:"";position:absolute;background:#369d67;width:190%;height:25%;border-radius:100% 0 100% 0;top:45%;transform-origin:bottom left;transform:rotate(-49deg)}
-.living-garden .stem:after{top:61%;left:-10%;transform:rotate(140deg)}
-.living-garden .bloom{position:absolute;left:50%;top:4%;width:80%;aspect-ratio:1;transform:translateX(-50%);animation:flowerGlow 4s infinite alternate}
-.living-garden .petal{position:absolute;left:32%;top:0;width:36%;height:55%;border-radius:65% 65% 45% 45%;background:var(--petal,#f9bdcf);transform-origin:50% 91%;transform:rotate(calc(var(--i)*45deg));box-shadow:inset -3px -4px 10px #00000022}
-.living-garden .core{position:absolute;inset:36%;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff6a8,#f5bc4a 72%);box-shadow:0 0 12px #f9d877ab}
-.living-garden .critter{position:absolute;left:var(--x,20%);top:var(--y,45%);font-size:var(--critter-size,28px);will-change:transform;display:block;transform:translate3d(0,0,0);animation:critterDrift var(--duration,15s) ease-in-out infinite alternate;animation-delay:var(--delay,0s);filter:drop-shadow(0 3px 8px #0006)}
-.living-garden .critter span{display:block;animation:wingFlutter .5s ease-in-out infinite alternate}
-.living-garden .critter.bee span{animation-duration:.22s}
-.living-garden .firefly{position:absolute;left:var(--x);top:var(--y);width:5px;height:5px;background:#fff5a0;border-radius:100%;box-shadow:0 0 8px 3px #fcf39ba6,0 0 24px 7px #b0ffb24d;animation:fireflyFloat var(--duration,6s) ease-in-out infinite alternate,fireflyBlink 2s ease-in-out infinite alternate;animation-delay:var(--delay,0s)}
-.living-garden .firefly:nth-child(3n){background:#bafdef;box-shadow:0 0 9px 3px #9cfaefaa}
+.living-garden .mini-flower{position:absolute;left:var(--left);bottom:var(--bottom);width:var(--size);height:calc(var(--size)*2.45);transform-origin:50% 100%;animation:stemSway var(--speed) ease-in-out infinite alternate;animation-delay:var(--delay);filter:drop-shadow(0 0 13px #80ffd820)}
+.living-garden .floral-svg{width:100%;height:100%;overflow:visible}
+.living-garden .flower-stem{fill:none;stroke:#319876;stroke-width:5;stroke-linecap:round;stroke-dasharray:180;stroke-dashoffset:180;animation:stemDraw 1.55s ease-out forwards;animation-delay:var(--grow)}
+.living-garden .flower-leaf{fill:#32976b;transform-box:fill-box;transform-origin:50% 95%;transform:scale(0);animation:leafBloom 1s ease-out forwards;animation-delay:calc(var(--grow) + .95s)}
+.living-garden .flower-leaf:nth-of-type(odd){fill:#52b98c}
+.living-garden .flower-head{transform-box:fill-box;transform-origin:50% 50%;transform:scale(.01);animation:headBloom 1.6s cubic-bezier(.2,1.5,.4,1) forwards;animation-delay:calc(var(--grow) + 1.05s)}
+.living-garden .flower-petal{fill:var(--petal);stroke:#ffffff1e;stroke-width:1;filter:drop-shadow(0 0 5px var(--petal))}
+.living-garden .flower-core{fill:#ffdb75;stroke:#fff1ad;stroke-width:2}
+.living-garden .flower-specks{fill:#b17832}
+.living-garden .flower-glimmer{transform-box:fill-box;transform-origin:center;animation:glimmer 3s ease-in-out infinite alternate}
+.living-garden .critter{position:absolute;left:var(--x);top:var(--y);width:var(--critter-size);height:var(--critter-size);animation:critterFlight var(--duration) ease-in-out infinite alternate;animation-delay:var(--delay);will-change:transform;filter:drop-shadow(0 4px 6px #0007)}
+.living-garden .critter svg{overflow:visible;width:100%;height:100%}
+.living-garden .critter .wing-l,.living-garden .critter .wing-r{transform-box:fill-box;transform-origin:100% 50%;animation:wingLeft var(--wing-speed,.35s) ease-in-out infinite alternate}
+.living-garden .critter .wing-r{transform-origin:0% 50%;animation-name:wingRight}
+.living-garden .critter.bee .wing-l,.living-garden .critter.bee .wing-r{--wing-speed:.12s}
+.living-garden .critter .wing-veins{stroke:#fff8;stroke-width:1.6;fill:none}
+.living-garden .firefly{position:absolute;left:var(--x);top:var(--y);width:5px;height:5px;border-radius:100%;background:#fff9b1;box-shadow:0 0 9px 4px #feefa7aa,0 0 26px 8px #9eeac74a;animation:fireflyFloat var(--duration) ease-in-out infinite alternate,fireflyPulse 2.6s ease-in-out infinite;animation-delay:var(--delay)}
+.living-garden .firefly:nth-child(3n){background:#b6fff1;box-shadow:0 0 11px 4px #9cebdba8}
+.living-garden .magic-spark{position:absolute;left:var(--x);bottom:var(--bottom);width:3px;height:3px;background:#ffe6aa;border-radius:50%;box-shadow:0 0 10px 3px #fff1a799;animation:magicRise var(--duration) linear infinite;animation-delay:var(--delay)}
 .garden-actions .animals-toggle{border-color:#f8e3a36b}
-body.animals-paused .critter,body.animals-paused .firefly{animation-play-state:paused}
-@keyframes sway{to{transform:rotate(6deg)}}@keyframes flowerGlow{to{filter:brightness(1.16)}}@keyframes wingFlutter{to{transform:rotate(-11deg) scale(.94)}}@keyframes critterDrift{0%{transform:translate3d(-16px,3px,0) rotate(-8deg)}25%{transform:translate3d(35px,-34px,0) rotate(12deg)}55%{transform:translate3d(-12px,28px,0) rotate(-8deg)}100%{transform:translate3d(64px,-52px,0) rotate(10deg)}}@keyframes fireflyFloat{to{transform:translate3d(20px,-35px,0)}}@keyframes fireflyBlink{0%,100%{opacity:.3}45%{opacity:1}}
-@media(max-width:640px){.living-garden .mini-flower{width:calc(var(--size,65px)*.65);height:calc(var(--size,65px)*1.16)}.living-garden .critter{font-size:calc(var(--critter-size,28px)*.75)}.living-garden .mini-flower:nth-of-type(2n){opacity:.75}.garden-ui{z-index:25}.garden-actions{max-width:360px}}
-@media(prefers-reduced-motion:reduce){.living-garden .mini-flower,.living-garden .bloom,.living-garden .critter,.living-garden .critter span,.living-garden .firefly{animation:none!important}}
+body.animals-paused .critter,body.animals-paused .critter *,body.animals-paused .firefly{animation-play-state:paused!important}
+@keyframes stemSway{0%{transform:rotate(-5deg)}100%{transform:rotate(6deg)}}
+@keyframes stemDraw{to{stroke-dashoffset:0}}
+@keyframes leafBloom{to{transform:scale(1)}}
+@keyframes headBloom{60%{transform:scale(1.12)}100%{transform:scale(1)}}
+@keyframes glimmer{to{filter:brightness(1.35)}}
+@keyframes wingLeft{0%{transform:scaleX(.2) rotate(-5deg)}100%{transform:scaleX(1) rotate(7deg)}}
+@keyframes wingRight{0%{transform:scaleX(.2) rotate(5deg)}100%{transform:scaleX(1) rotate(-7deg)}}
+@keyframes critterFlight{0%{transform:translate3d(-20px,9px,0) rotate(-12deg)}25%{transform:translate3d(36px,-48px,0) rotate(9deg)}55%{transform:translate3d(-12px,-18px,0) rotate(-9deg)}80%{transform:translate3d(46px,25px,0) rotate(12deg)}100%{transform:translate3d(72px,-58px,0) rotate(-5deg)}}
+@keyframes fireflyFloat{to{transform:translate3d(29px,-42px,0)}}
+@keyframes fireflyPulse{0%,100%{opacity:.22;scale:.6}50%{opacity:1;scale:1.4}}
+@keyframes magicRise{0%{opacity:0;transform:translateY(0) scale(.3)}25%{opacity:.8}100%{opacity:0;transform:translateY(-180px) scale(1.4)}}
+@media(max-width:640px){.living-garden .mini-flower{width:calc(var(--size)*.7);height:calc(var(--size)*1.72)}.living-garden .critter{width:calc(var(--critter-size)*.8);height:calc(var(--critter-size)*.8)}.living-garden .mini-flower:nth-child(3n){opacity:.82}.garden-ui{z-index:25}.garden-actions{max-width:360px}}
+@media(prefers-reduced-motion:reduce){.living-garden *, .living-garden *::before,.living-garden *::after{animation:none!important}.living-garden .flower-stem{stroke-dashoffset:0}.living-garden .flower-head,.living-garden .flower-leaf{transform:scale(1)}}
