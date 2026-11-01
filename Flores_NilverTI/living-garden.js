@@ -5,7 +5,7 @@
   const reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const svg=(markup,viewBox='0 0 100 100')=>'<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+viewBox+'" aria-hidden="true" focusable="false">'+markup+'</svg>';
   const flowerMarkup=()=>svg(
-    '<path class="flower-stem" d="M50 182 Q40 116 50 48"/>'+
+    '<defs><linearGradient id="petalDepth" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#fff9e8"/><stop offset="24%" stop-color="var(--petal)"/><stop offset="65%" stop-color="var(--petal)"/><stop offset="100%" stop-color="#59385d"/></linearGradient><radialGradient id="coreDepth" cx="30%" cy="24%" r="75%"><stop offset="0%" stop-color="#fffde7"/><stop offset="44%" stop-color="#ffe18a"/><stop offset="100%" stop-color="#bb7938"/></radialGradient><linearGradient id="stemDepth"><stop stop-color="#135e4a"/><stop offset="48%" stop-color="#69d5a0"/><stop offset="100%" stop-color="#155845"/></linearGradient><linearGradient id="leafDepth" x1="0" x2="1" y1="0" y2=".5"><stop stop-color="#114f43"/><stop offset=".6" stop-color="#56c596"/><stop offset="1" stop-color="#1c6e5a"/></linearGradient></defs>'+\n    '<path class="flower-stem" d="M50 182 Q40 116 50 48"/>'+
     '<path class="flower-leaf" d="M47 140 Q6 108 11 97 Q43 95 48 129Z"/>'+
     '<path class="flower-leaf" d="M49 119 Q91 91 88 80 Q55 85 48 109Z"/>'+
     '<path class="flower-leaf" d="M48 166 Q18 155 22 141 Q42 141 50 158Z"/>'+
@@ -39,7 +39,7 @@
   ];
   flowers.forEach(([left,bottom,size,petal],i)=>{
     const el=document.createElement('div');el.className='mini-flower';
-    el.style.cssText='--left:'+left+'%;--bottom:'+bottom+'%;--size:'+size+'px;--petal:'+petal+';--speed:'+(3.6+i%4*.65)+'s;--delay:'+(-i*.34)+'s;--grow:'+(i*.21)+'s';
+    el.style.cssText='--left:'+left+'%;--bottom:'+bottom+'%;--size:'+size+'px;--petal:'+petal+';--flower-angle:'+(i%2===0?'-16deg':'16deg')+';--speed:'+(3.6+i%4*.65)+'s;--delay:'+(-i*.34)+'s;--grow:'+(i*.21)+'s';
     el.innerHTML=flowerMarkup();scene.appendChild(el);
   });
   const creatures=[
