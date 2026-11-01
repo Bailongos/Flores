@@ -32,10 +32,10 @@
     '<circle cx="30" cy="52" r="6" fill="#341c35"/><circle cx="38" cy="70" r="5" fill="#341c35"/><circle cx="68" cy="51" r="6" fill="#341c35"/><circle cx="60" cy="70" r="5" fill="#341c35"/>'+
     '<circle cx="50" cy="26" r="15" fill="#222331"/><path d="M42 17 L36 9 M58 17 L64 9" stroke="#222331" stroke-width="3" fill="none"/>');
   const flowers=[
-    [2,2,81,'#ff9ec8'],[13,0,70,'#ffdb7c'],[24,3,60,'#bfa5ff'],
-    [36,0,59,'#f8a1ab'],[46,2,46,'#ffe6a6'],[57,1,51,'#e2b1ff'],
-    [68,0,63,'#ffbc8d'],[79,2,63,'#f69fc5'],[90,0,79,'#b2d9fa'],
-    [7,0,38,'#ffe2a2'],[95,2,40,'#e8a9ff']
+    [1,1,151,'#ff9ec8'],[12,0,125,'#ffdb7c'],[24,1,105,'#bfa5ff'],
+    [35,-1,112,'#f8a1ab'],[46,1,104,'#ffe6a6'],[57,0,118,'#e2b1ff'],
+    [68,-1,116,'#ffbc8d'],[79,1,129,'#f69fc5'],[90,0,149,'#b2d9fa'],
+    [7,0,96,'#ffe2a2'],[96,2,96,'#e8a9ff']
   ];
   flowers.forEach(([left,bottom,size,petal],i)=>{
     const el=document.createElement('div');el.className='mini-flower';
@@ -43,12 +43,12 @@
     el.innerHTML=flowerMarkup();scene.appendChild(el);
   });
   const creatures=[
-    ['butterfly',8,31,72,12,0,butterfly('#a4caff','#7a7fe2')],
-    ['butterfly',72,28,68,15,-3,butterfly('#ffb2d8','#f375b9')],
-    ['butterfly',38,53,56,17,-8,butterfly('#ffd9a2','#f3ab6a')],
-    ['bee',18,65,53,11,-2,bee()],
-    ['bee',77,65,50,13,-7,bee()],
-    ['ladybug',58,77,36,19,-9,ladybug()]
+    ['butterfly',8,30,114,12,0,butterfly('#a4caff','#7a7fe2')],
+    ['butterfly',72,27,108,15,-3,butterfly('#ffb2d8','#f375b9')],
+    ['butterfly',38,48,86,17,-8,butterfly('#ffd9a2','#f3ab6a')],
+    ['bee',18,65,83,11,-2,bee()],
+    ['bee',77,62,79,13,-7,bee()],
+    ['ladybug',58,76,56,19,-9,ladybug()]
   ];
   creatures.forEach(([type,x,y,size,duration,delay,art])=>{
     const el=document.createElement('div');el.className='critter '+type;
