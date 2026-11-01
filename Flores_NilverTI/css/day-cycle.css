@@ -25,3 +25,8 @@ body[data-phase="night"] .enchanted-world .aurora{opacity:.8}
 body[data-phase="day"] .living-garden .critter,body[data-phase="day"] .enchanted-world .fairy{filter:drop-shadow(0 5px 9px #22366a75)}
 @media(max-width:640px){.garden-clock{top:8px;left:8px;padding:7px 10px;border-radius:13px;gap:8px}.clock-symbol{font-size:17px}.clock-time{font-size:14px}.clock-day,.clock-phase{font-size:9px}.garden-ui{padding-top:100px!important}.living-garden .floral-svg{transform:rotateY(var(--flower-angle,0deg)) rotateX(4deg)}}
 @media(prefers-reduced-motion:reduce){.time-sky .celestial{transition:none}}
+
+/* Explicit stacking order keeps the changing sky visible behind existing flowers. */
+body.container > .night{z-index:0!important}
+body.container > .flowers{z-index:5!important}
+body.container > .time-sky{z-index:1!important}
