@@ -1,0 +1,27 @@
+/* Cinematic simulated day/night clock and layered 2.5D flowers */
+.time-sky{position:fixed;inset:0;z-index:1;pointer-events:none;overflow:hidden;background:linear-gradient(to bottom,var(--sky-top,#142744),var(--sky-bottom,#283b55) 73%,#0e2931);transition:background .2s}
+.time-sky::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 102%,#79d4a330,transparent 60%);mix-blend-mode:screen}
+.celestial{position:absolute;left:var(--sun-x,10%);top:var(--sun-y,70%);width:clamp(66px,10vw,128px);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);will-change:left,top,opacity;transition:opacity .8s;pointer-events:none}
+.celestial.sun{background:radial-gradient(circle at 35% 30%,#fffbea,#ffe59d 53%,#ffc878 78%);box-shadow:0 0 35px 12px #ffc76e9c,0 0 100px 35px #ffbe6268,0 0 210px 80px #ffc15d35;opacity:var(--sun-opacity,1)}
+.celestial.moon{left:var(--moon-x,85%);top:var(--moon-y,24%);width:clamp(56px,8vw,110px);background:radial-gradient(circle at 35% 30%,#fffff0,#d4e1f4 70%,#94abca);box-shadow:0 0 28px #cce6ff9c,0 0 110px 28px #b2c8f84d;opacity:var(--moon-opacity,0)}
+.celestial.moon::after{content:"";position:absolute;top:20%;left:25%;width:17%;height:15%;border-radius:50%;background:#8299ba2b;box-shadow:25px 23px 0 4px #8299ba21,-6px 38px 0 0 #8299ba1a}
+.time-horizon{position:absolute;left:0;right:0;bottom:0;height:42%;background:radial-gradient(ellipse at 50% 120%,var(--horizon-glow,#dba8a940),transparent 72%);opacity:.8}
+.garden-clock{position:fixed;left:clamp(12px,3vw,30px);top:clamp(12px,3vw,26px);z-index:60;display:flex;align-items:center;gap:12px;padding:11px 15px;border:1px solid #ffffff42;border-radius:18px;background:#101b32b8;color:#fff5e4;backdrop-filter:blur(18px);box-shadow:0 8px 35px #0004;font:600 12px/1.35 "DM Sans",sans-serif}
+.clock-symbol{font-size:23px;line-height:1}.clock-meta{display:flex;flex-direction:column;gap:3px;white-space:nowrap}.clock-time{font-size:18px;letter-spacing:.045em;font-variant-numeric:tabular-nums}.clock-day{font-size:11px;font-weight:500;color:#e6d6e8}.clock-phase{color:#f9d48e;font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+.garden-clock .clock-pause{border:1px solid #ffffff50;background:#ffffff12;border-radius:10px;color:#fff;padding:8px;cursor:pointer;font-size:12px}.garden-clock .clock-pause:focus-visible{outline:2px solid #fff2bd;outline-offset:3px}
+.living-garden .mini-flower{perspective:550px;transform-style:preserve-3d;filter:drop-shadow(0 9px 11px #0009) drop-shadow(0 0 16px var(--petal))!important}
+.living-garden .floral-svg{transform:rotateY(var(--flower-angle,0deg)) rotateX(7deg);transform-origin:50% 65%;transform-style:preserve-3d;filter:drop-shadow(6px 8px 6px #01071791)!important}
+.living-garden .flower-head{filter:drop-shadow(0 8px 5px #160d2873)}
+.living-garden .flower-petal{fill:url(#petalDepth)!important;stroke:#fff9!important;stroke-width:.9;filter:drop-shadow(2px 4px 3px #2c14386e)!important}
+.living-garden .flower-core{fill:url(#coreDepth)!important;filter:drop-shadow(2px 3px 3px #33210c8a) drop-shadow(0 0 6px #fff0a1)!important}
+.living-garden .flower-stem{stroke:url(#stemDepth)!important;stroke-width:6;filter:drop-shadow(3px 2px 2px #061f1988)}
+.living-garden .flower-leaf{fill:url(#leafDepth)!important;filter:drop-shadow(3px 3px 3px #051e1980)}
+.living-garden .flower-petal:nth-of-type(even){filter:brightness(.9) drop-shadow(3px 4px 2px #20132a88)!important}
+body[data-phase="day"] .enchanted-world .star-field,body[data-phase="day"] .enchanted-world .shooting-star{opacity:0!important}
+body[data-phase="day"] .enchanted-world .aurora{opacity:.07!important}
+body[data-phase="day"] .living-garden .firefly{opacity:.12!important}
+body[data-phase="dawn"] .enchanted-world .aurora,body[data-phase="dusk"] .enchanted-world .aurora{opacity:.28!important}
+body[data-phase="night"] .enchanted-world .aurora{opacity:.8}
+body[data-phase="day"] .living-garden .critter,body[data-phase="day"] .enchanted-world .fairy{filter:drop-shadow(0 5px 9px #22366a75)}
+@media(max-width:640px){.garden-clock{top:8px;left:8px;padding:7px 10px;border-radius:13px;gap:8px}.clock-symbol{font-size:17px}.clock-time{font-size:14px}.clock-day,.clock-phase{font-size:9px}.garden-ui{padding-top:100px!important}.living-garden .floral-svg{transform:rotateY(var(--flower-angle,0deg)) rotateX(4deg)}}
+@media(prefers-reduced-motion:reduce){.time-sky .celestial{transition:none}}
