@@ -1,0 +1,32 @@
+/* Performance profile: vivid scene with fewer expensive paint operations. */
+.time-sky{transition:none!important}
+.living-garden .mini-flower,.living-garden .floral-svg,.living-garden .flower-core,.living-garden .flower-petal,.living-garden .flower-stem,.living-garden .flower-leaf{filter:none!important}
+.living-garden .mini-flower{will-change:transform}
+.living-garden .flower-petal{stroke:#ffffff70!important}
+.enchanted-world .aurora{filter:blur(22px)!important;animation-duration:32s!important;opacity:.45!important}
+.enchanted-world .glow-pool{filter:blur(18px)!important}
+.enchanted-world .fairy{filter:drop-shadow(0 0 8px var(--glow))!important}
+.enchanted-world .fairy svg{filter:none!important}
+.enchanted-world .fantasy-object{filter:none!important}
+.enchanted-world .floating-orb{box-shadow:0 0 8px 2px var(--glow)!important}
+.living-garden .critter{filter:none!important}
+.living-garden .firefly{box-shadow:0 0 7px 2px #fff5b1!important}
+.living-garden .magic-spark{box-shadow:0 0 5px 2px #ffe5a4!important}
+.garden-heading h1{animation:none!important;background-size:100% 100%!important}
+.garden-actions button,.garden-actions a,.garden-clock{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.enchanted-world .shooting-star{filter:none!important}
+@media(max-width:700px){
+ .enchanted-world .aurora{filter:none!important;opacity:.23!important;animation:none!important}
+ .enchanted-world .glow-pool{filter:none!important}
+ .enchanted-world .star-field{animation:none!important}
+ .living-garden .mini-flower{animation:stemSway 6s ease-in-out infinite alternate!important}
+ .living-garden .flower-head,.living-garden .flower-leaf,.living-garden .flower-stem{animation-duration:.7s!important;animation-delay:0s!important}
+ .living-garden .firefly:nth-of-type(2n){display:none!important}
+ .enchanted-world .fantasy-object{animation:none!important;opacity:.9!important;scale:1!important}
+ .enchanted-world .fairy{animation-duration:20s!important}
+ .enchanted-world .fairy .fairy-wing{animation-duration:.8s!important}
+ .celestial.sun{box-shadow:0 0 35px #ffc76e70!important}
+ .celestial.moon{box-shadow:0 0 30px #cce6ff75!important}
+ .garden-actions{box-shadow:none!important}
+}
+@media(prefers-reduced-motion:reduce){.living-garden *, .enchanted-world *{animation:none!important}}
