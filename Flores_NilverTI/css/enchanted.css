@@ -38,3 +38,17 @@ body.container{background:#060b1b}
 @keyframes titleShimmer{to{background-position:230% 0}}
 @media(max-width:640px){.enchanted-world .fantasy-object{width:calc(var(--size)*.72)}.enchanted-world .fairy{width:calc(var(--size)*.8);height:calc(var(--size)*.8)}.enchanted-world .aurora{filter:blur(39px)}.garden-heading{padding:0 8px}.garden-heading h1{font-size:clamp(1.8rem,7vw,2.6rem)}.garden-actions{max-width:370px!important;gap:7px!important}.garden-actions button,.garden-actions a{font-size:11px!important;padding:10px 12px!important}}
 @media(prefers-reduced-motion:reduce){.enchanted-world *, .garden-heading h1{animation:none!important}.enchanted-world .shooting-star{display:none}.enchanted-world .fantasy-object{opacity:1;scale:1}}
+
+/* Balanced illustration: no giant stick figures or foreground clutter. */
+.enchanted-world .fairy{width:calc(var(--size)*.68);height:calc(var(--size)*.68);opacity:.94;filter:drop-shadow(0 0 16px var(--glow)) drop-shadow(0 0 25px var(--glow))}
+.enchanted-world .fairy svg{filter:drop-shadow(0 0 6px #e7fff9)}
+.enchanted-world .fairy .fairy-wing{transform-origin:50% 65%;animation-duration:.42s}
+.enchanted-world .fantasy-object{filter:drop-shadow(0 5px 8px #06122ca8) drop-shadow(0 0 9px var(--glow));opacity:.88}
+.enchanted-world .aurora{opacity:.58}
+.enchanted-world .glow-pool{opacity:.55}
+.enchanted-world .floating-orb{opacity:.58}
+@media(max-width:640px){
+ .enchanted-world .fairy{width:calc(var(--size)*.54);height:calc(var(--size)*.54)}
+ .enchanted-world .fantasy-object{width:calc(var(--size)*.58)}
+ .enchanted-world .floating-orb:nth-of-type(3n){display:none}
+}
